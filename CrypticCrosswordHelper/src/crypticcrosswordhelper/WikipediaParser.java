@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 // Parses wikipedia.org for encyclopeadia entries
@@ -25,12 +23,16 @@ public class WikipediaParser
             Elements entry = doc.select("div.mw-content-ltr");
             Elements pEntries = entry.select("p");
             result = pEntries.get(0).text();
-            System.out.println("result: " + result);
-          /*  for (int i=0; i<pEntries.size(); i++)
-            {
-                Element thisEntry = pEntries.get(i);
-                result += thisEntry.text() + "\n\n";
-            } */
+            System.out.println(query + ": " + result);
+            /*
+             * To retreive the entire Wikipedia entry:
+             * 
+                for (int i=0; i<pEntries.size(); i++)
+                {
+                    Element thisEntry = pEntries.get(i);
+                    result += thisEntry.text() + "\n\n";
+                } 
+             */            
         }
         catch (MalformedURLException ex) {
             Logger.getLogger(WikipediaParser.class.getName()).log(Level.SEVERE, null, ex);

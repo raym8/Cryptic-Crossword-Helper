@@ -9,20 +9,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Copyright Mike Ray
- * The Univerity of Manchester
+ * The University of Manchester
  */
 public class ProcessClue {
-
     private static Clue currentClue;
     private static String entry;
 
+    /*
+     * Returns the current clue
+     */
     public static Clue getCurrentClue() {
         return currentClue;
-    }
+    } // ProcessClue()
 
+    /*
+     * Sets a new current clue
+     */
     public static void setCurrentClue(Clue newClue) {
         currentClue = newClue;
         GUI.setCurrentClue(currentClue);
@@ -31,12 +38,13 @@ public class ProcessClue {
         GUI.addToCommentary("Mask: " + currentClue.getMask());
         GUI.addToCommentary("Location: " + currentClue.getLocation());
         GUI.setupSubTasks(currentClue);
-    }
+    } // setCurrentClue()
 
-    public static void initClue(Clue newClue) throws IOException {
+    /*
+     * Attempt to solve the current clue
+     */
+    public static void procClue() {
         solutions = new HashSet();
-        if (Main.getCurrentCrossword().addClue(newClue))
-            setCurrentClue(newClue);
 
         int noSynonyms = 0;
         int noDefinitions = 0;
@@ -52,29 +60,38 @@ public class ProcessClue {
         if (anagrams != null) {
             GUI.addToCommentary("**********\nAnagrams of solution length:");
             Iterator iterator = anagrams.iterator();
+            String anagramResults = "";
             while (iterator.hasNext())
-                GUI.addToCommentary(iterator.next().toString() + ", ");
-            GUI.addToCommentary("");
-        }
+                anagramResults += iterator.next().toString() + ", ";
+            GUI.addToCommentary(anagramResults);
+        } // if
 
-        GUI.addToCommentary("**********\nHidden words in clue:");
-        GUI.addToCommentary(newClue.getHiddenWords().toString());
+        if (currentClue.getHiddenWords().isEmpty())
+            GUI.addToCommentary("**********\nNo hidden words found in clue");
+        else {
+            GUI.addToCommentary("**********\nHidden words in clue:");
+            GUI.addToCommentary(currentClue.getHiddenWords().toString());
+        } // else
 
         GUI.addToCommentary("**********\nWords that fit solution mask:");
-        GUI.addToCommentary(newClue.getAutoSolveWords().size() + " words");
+        GUI.addToCommentary(currentClue.getAutoSolveWords().size() + " words");
         
-        HashSet usefulWords = WikipediaParser.getUsefulWords(newClue.getOrigClue());
+        HashSet usefulWords = WikipediaParser.getUsefulWords(currentClue.getOrigClue());
         GUI.addToCommentary("**********\nUseful words to look up with Wikipedia:");
         GUI.addToCommentary(usefulWords.toString());
         Iterator iterator = usefulWords.iterator();
         String next = null;
         while (iterator.hasNext()) {
             next = iterator.next().toString();
-            for (int i=0 ;i<newClue.getNoWords(); i++) {
-                if (newClue.getWord(i).getWord().equals(next)) {
-                    entry = WikipediaParser.getEntry(newClue.getWord(i).getWord());
+            for (int i=0 ;i<currentClue.getNoWords(); i++) {
+                if (currentClue.getWord(i).getWord().equals(next)) {
+                    try {
+                        entry = WikipediaParser.getEntry(currentClue.getWord(i).getWord());
+                    } catch (IOException ex) {
+                        Logger.getLogger(ProcessClue.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     HashSet usefulEntryWords = WikipediaParser.getUsefulWords(entry);
-                    testForSolution(usefulEntryWords, newClue.getMask());
+                    testForSolution(usefulEntryWords, currentClue.getMask());
                 }
             }
         }

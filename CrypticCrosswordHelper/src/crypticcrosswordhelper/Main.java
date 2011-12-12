@@ -41,7 +41,6 @@ public class Main {
     public static void main(String[] args) throws IOException {
        dict = loadWordsData(); // Load external Dictionary data file into String array
        notUsefulWords = loadWordFreqData(); // Load external word frequency file to find NOT useful words
-       HashSet result = WikipediaParser.getUsefulWords(WikipediaParser.getEntry("word"));
        
        Crossword initCrossword = new Crossword("initCrossword");
        currentCrossword = initCrossword;

@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 /**
  * Copyright Mike Ray
- * The Univerity of Manchester
+ * The University of Manchester
  */
 public class Clue {
 
