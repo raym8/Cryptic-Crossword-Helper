@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package crypticcrosswordhelper;
 
 import java.io.File;
@@ -13,8 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 /**
- * Copyright Mike Ray
- * The Univerity of Manchester
+ * Reads an external text file to load a previous crossword
  */
 public class Load {
 
@@ -64,23 +58,19 @@ public class Load {
             } // for
 
             Main.setCurrentCrossword(newCrossword);
-
-
         } // try
         catch (IOException e) {
         } // catch
         finally {
             //Close the ObjectInputStream
             try {
-                if (in != null) {
+                if (in != null)
                     in.close();
-                } // if
             } // try
             catch (IOException ex) {
-                
             } // catch
         } // finally
 
-    } // loadCrossword
+    } // loadCrossword()
 
-}
+} // Load()

@@ -10,7 +10,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-// Parses wikipedia.org for encyclopeadia entries
+/*
+ * Parses wikipedia.org for encyclopeadia entries
+ */
 public class WikipediaParser
 {
     public static String getEntry(String query) throws IOException {

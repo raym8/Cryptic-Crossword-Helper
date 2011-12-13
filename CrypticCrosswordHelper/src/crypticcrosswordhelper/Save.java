@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package crypticcrosswordhelper;
 
 import java.io.File;
@@ -11,8 +6,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
- * Copyright Mike Ray
- * The Univerity of Manchester
+ * Saves a given crossword to an external file so it can be loaded at another time
  */
 public class Save {
 
@@ -50,9 +44,7 @@ public class Save {
             out.close();
         } // try
         catch (IOException e) {
+        } // catch   
+    } // saveCrossword()
 
-        } // catch
-        
-    } // saveCrossword
-
-}
+} // Save()

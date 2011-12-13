@@ -15,18 +15,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-// Parses the html on the cryptic crosswor page on www.guardian.co.uk and
-// saves all cryptic clues and their solutions to a text file
-/**
- * Copyright Mike Ray
- * The Univerity of Manchester
- */
-
-/**
- *  Extract all "img" tags from an HTML document.
+ * Parses the html on the cryptic crosswor page on www.guardian.co.uk and
+ * saves all cryptic clues and their solutions to a text file
+ * 
+ * NOTE: This class is only used to collect testing data and is not used in 
+ * the main program CrypticCrosswordHelper.
  */
 public class GuardianParser
 {
@@ -36,14 +29,18 @@ public class GuardianParser
 
     public static void main(String[] args) throws IOException
     {
+        // Setup the file to put the test data
         testData = new BufferedWriter(new FileWriter("testData.txt"));
 
+        // For all available crosswords on www.guardian.co.uk
         for (int i=22000; i<25482; i++)
             saveCrossword(i);
 
+        // Close file
         testData.close();
-    }
+    } // main()
 
+    // Parses website for data...
     public static void saveCrossword(int num) {
         try {
             URL url = new URL("http://www.guardian.co.uk/crosswords/cryptic/" + num);
@@ -58,9 +55,7 @@ public class GuardianParser
                 Element thisLabel = label.get(i);
                 String thisFor = thisLabel.attr("for");
                 if ((thisFor.contains("down")) || (thisFor.contains("across"))) // narrow results down to just locations
-                {
                     data[i][0] = thisFor;
-                }
                 String thisText = thisLabel.text();
                 if (thisText.endsWith(")")) // narrow results down to just clues
                 {
@@ -73,7 +68,7 @@ public class GuardianParser
                     thisText = thisText.trim();
                    
                     data[i][1] = thisText;
-                }
+                } // if
             } // for
 
             BufferedWriter solsOut = new BufferedWriter(new FileWriter("out.txt"));
@@ -83,12 +78,10 @@ public class GuardianParser
             getSolutions();
 
             saveData();
-           // System.out.println(label.toString());
         } catch (IOException ex) {
             Logger.getLogger(GuardianParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+        } // catch
+    } // saveCrossword()
 
     private static void getSolutions() throws IOException
     {
@@ -128,17 +121,16 @@ public class GuardianParser
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GuardianParser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+        } // catch
+    } // getSolutions()
 
-
+    // Save data to text file
     public static void saveData() throws IOException
     {
-
         for (int i=0; i<solNo; i++) {
             for (int j=0; j<3; j++) {
                 testData.write(data[i][j] + "\n");
-            }
-        }
-    }
-}
+            } // for
+        } // for
+    } // saveData()
+} // GuardianParser()

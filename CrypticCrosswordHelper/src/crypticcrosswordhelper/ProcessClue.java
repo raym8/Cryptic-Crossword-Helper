@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package crypticcrosswordhelper;
 
 import java.io.IOException;
@@ -13,8 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Copyright Mike Ray
- * The University of Manchester
+ * Most of the work happens here...
  */
 public class ProcessClue {
     private static Clue currentClue;

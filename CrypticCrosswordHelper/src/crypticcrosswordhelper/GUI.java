@@ -692,6 +692,7 @@ public class GUI extends javax.swing.JFrame {
         
         // Try to add new clue to the current crossword
         boolean added = Main.getCurrentCrossword().addClue(newClue);
+        System.out.println("added new clue");
         // If clue already exists at given location, then need to update that clue's data
         if (!added) {
             // Get original clue
@@ -747,12 +748,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         String query = jTextField3.getText();
-        jList1.setListData(GetData.getSynonyms(query).toArray());
+        GetData.downloadData(query);
+        jList1.setListData(GetData.synonyms.toArray());
 }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String query = jTextField3.getText();
-        jList1.setListData(GetData.getSynonyms(query).toArray());
+        GetData.downloadData(query);
+        jList1.setListData(GetData.synonyms.toArray());
 }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -785,12 +788,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         String query = jTextField6.getText();
-        jList4.setListData(GetData.getDefinitions(query).toArray());
+        GetData.downloadData(query);
+        jList4.setListData(GetData.definitions.toArray());
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         String query = jTextField6.getText();
-        jList4.setListData(GetData.getDefinitions(query).toArray());
+        GetData.downloadData(query);
+        jList4.setListData(GetData.definitions.toArray());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     public static void setCurrentClue(Clue clue) {
