@@ -38,6 +38,7 @@ public class Save {
                 out.writeObject(thisClue.getAutoSolveWords());   // words that will fit solution mask
                 out.writeObject(thisClue.getHiddenWords());      // any hidden words in clue
                 out.writeObject(thisClue.getLocation());         // location of clue in crossword
+                out.writeObject(thisClue.getCommentary());       // commentary of solution
                 out.writeObject("\n");
             } // for
 

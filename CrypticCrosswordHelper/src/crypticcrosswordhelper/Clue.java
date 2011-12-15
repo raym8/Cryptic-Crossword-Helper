@@ -18,7 +18,8 @@ public class Clue {
     private HashSet autoSolveWords; // words that will fit into solution mask
     private HashSet hiddenWords;    // words that are hidden in the clue
     private String location;        // location of the clue in a crossword (optional)
-
+    private String commentary;      // commentray of solution
+    
     // Constructor: Clue
     public Clue(String myClue, String myMask, String myLocation) {
         origClue = myClue;
@@ -35,7 +36,19 @@ public class Clue {
         hiddenWords = new HashSet();
         hiddenWords = HiddenWord.findHiddenWord(cleanClue, myMask); // Find any hidden words
         location = myLocation;
+        commentary = "Clue: " + origClue + "\nSolution Mask: " + mask + "\nLocation: " + location +"\n\n";
     } // Clue
+    
+    public boolean containsWord(String myWord) {
+        Iterator i;
+        i = words.iterator();
+        while (i.hasNext()) {
+            Word thisWord = (Word)i.next();
+            if (myWord.equals(thisWord.getWord()))
+                return true;
+        } // while
+        return false;
+    } // containsWord()
 
     public String getOrigClue() {
         return origClue;
@@ -108,6 +121,18 @@ public class Clue {
     public void setLocation(String newLocation) {
         location = newLocation;
     } // setLocation()
+    
+    public String getCommentary() {
+        return commentary;
+    } // getCommentary()
+    
+    public void setCommentary(String newCommentary) {
+        commentary = newCommentary;
+    } // setCommentary()
+    
+    public void addToCommentary(String addition) {
+        commentary += addition + "\n";
+    } // addToCommentary();
 
     // Print all clue details (for de-bugging only)
     public void printClue() {
@@ -136,6 +161,7 @@ public class Clue {
         else
             System.out.print("NONE");
         System.out.println("\nlocation: " + location);
+        System.out.println("commentary: " + commentary);
     } // printClue()
 
 } // Clue()

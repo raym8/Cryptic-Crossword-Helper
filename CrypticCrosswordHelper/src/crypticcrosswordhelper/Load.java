@@ -51,6 +51,7 @@ public class Load {
                 newClue.setAutoSolveWords((HashSet)in.readObject());
                 newClue.setHiddenWords((HashSet)in.readObject());
                 newClue.setLocation((String)in.readObject());
+                newClue.setCommentary((String)in.readObject());
                 newLine = in.readObject();
 
                 newCrossword.addClue(newClue);

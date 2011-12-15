@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +31,7 @@ public class Main {
     public static void setCurrentCrossword(Crossword newCurrentCrossword) {
         currentCrossword = newCurrentCrossword;
         GUI.updateHistory();
-        ProcessClue.setCurrentClue(currentCrossword.getClue(0));
+
     }
 
     /**

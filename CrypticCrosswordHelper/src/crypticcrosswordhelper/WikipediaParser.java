@@ -21,11 +21,12 @@ public class WikipediaParser
         
         try {
             URL url = new URL("http://en.wikipedia.org/wiki/" + query);
-            Document doc = Jsoup.parse(url, 100000);
+
+            Document doc = Jsoup.parse(url, 100000);            
             Elements entry = doc.select("div.mw-content-ltr");
             Elements pEntries = entry.select("p");
             result = pEntries.get(0).text();
-            System.out.println(query + ": " + result);
+
             /*
              * To retreive the entire Wikipedia entry:
              * 

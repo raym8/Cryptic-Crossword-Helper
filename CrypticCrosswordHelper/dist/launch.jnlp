@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="$$codebase" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>CrypticCrosswordHelper</title>
+        <vendor>raym8</vendor>
+        <homepage href=""/>
+        <description>CrypticCrosswordHelper</description>
+        <description kind="short">CrypticCrosswordHelper</description>
+
+    </information>
+<update check="always"/>
+
+    <resources>
+<j2se version="1.5+"/>
+<jar href="CrypticCrosswordHelper.jar" main="true"/>
+
+
+    <jar href="lib/AbsoluteLayout.jar"/>
+<jar href="lib/jsoup-1.6.1.jar"/>
+<jar href="lib/jsoup-1.6.1.jar"/>
+</resources>
+    <application-desc main-class="crypticcrosswordhelper.Main">
+
+    </application-desc>
+</jnlp>

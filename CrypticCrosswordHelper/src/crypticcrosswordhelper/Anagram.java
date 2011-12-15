@@ -1,20 +1,21 @@
 package crypticcrosswordhelper;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Handles all the Anagram functions
  */
 public class Anagram {
     
-    private static ArrayList<String> anagramList; // Stores the list of anagrammed words
+    private static HashSet<String> anagramList; // Stores the list of anagrammed words
     private static char[] clueArray; // String to be anagrammed as an array of chars
     private static String clue; // String to be anagrammed
 
     // Creates a window of a given size and 'scans' clue trying to find anagrams
-    public static ArrayList<String> doAnagram(String myClue, int windowSize) {
+    public static HashSet<String> doAnagram(String myClue, int windowSize) {
         // Initialise list of anagrammed words
-        anagramList = new ArrayList<String>();
+        anagramList = new HashSet<String>();
         
         // If window size is larger than clue length, we cannot continue
         if (windowSize > myClue.length()) {
