@@ -140,6 +140,14 @@ public class ProcessClue {
     private static int maxOccurenceVal;
     private static String maxOccuringWord;
     
+    public static String getMaxOccuringWord() {
+        return maxOccuringWord;
+    }
+    
+    public static HashSet getPossibleSolutions() {
+        return solutions;
+    }
+    
     private static void findMaxSols() {
         maxOccurenceVal = 0;
         maxOccuringWord = null;
